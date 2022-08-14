@@ -57,3 +57,7 @@ coverage.xml
 
 # pyenv
 .python-versiondata/
+
+# environment
+.env
+.env.local
