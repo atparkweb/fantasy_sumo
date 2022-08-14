@@ -17,6 +17,10 @@ Use the following steps to get the Django development server running with Postgr
 3. Open browser and go to [localhost:8000](http://localhost:8000)
 4. Start hacking
 
+### Stopping the server
+1. In a terminal `cd` to the root of this project
+2. Run `docker compose -f ./docker/dev/docker-compose.yml --project-directory . down`
+
 ### Running Django commands
 Since the Python/Django environment is in containers, all django commands run through docker
 
