@@ -1,4 +1,7 @@
 data/
 .gitignore
+.env.local
 .env.example
 docker/
+scripts/
+.venv/
