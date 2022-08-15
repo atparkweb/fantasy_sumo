@@ -63,4 +63,4 @@ coverage.xml
 .env.local
 
 # dev database volumes
-data/
+data/db/
