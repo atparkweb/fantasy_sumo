@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-def login(request):
+def auth(request):
     return render(request, 'login.html', {})
 
-def new(request):
+def create(request):
     return render(request, 'new.html', {})
