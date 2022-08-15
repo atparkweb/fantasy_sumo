@@ -20,9 +20,20 @@ class Stable(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields = ["name"],
+                name = "unique_name",
+            ),
+            models.UniqueConstraint(
+                fields = ["name_kanji"],
+                name = "unique_name_kanji",
+            ),
+        ]
+
     def __str__(self):
         return "%s" % self.name
-
 class WrestlerProfile(models.Model):
     wrestler = models.OneToOneField(
         Wrestler,
