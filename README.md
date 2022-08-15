@@ -24,3 +24,7 @@ Use the following steps to get the Django development server running with Postgr
 ### Running Migrations
 1. In a terminal `cd` to the root of this project
 2. Run `./scripts/migrate`
+
+### Connecting to DB container psql
+1. Run `docker exec -it <DB container name> psql -U postgres -W postgres`
+
