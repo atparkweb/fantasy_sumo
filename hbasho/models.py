@@ -10,8 +10,21 @@ class Wrestler(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields = ["last_name", "first_name"],
+                name = "unique_wrestler_name",
+            ),
+            models.UniqueConstraint(
+                fields = ["last_name_kanji", "first_name_kanji"],
+                name = "unique_wrestler_name_kanji"
+            ),
+        ]
+
     def __str__(self):
         return "%s %s" % (self.last_name, self.first_name)
+
 
 class Stable(models.Model):
     name = models.CharField(max_length=32)
@@ -24,16 +37,18 @@ class Stable(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields = ["name"],
-                name = "unique_name",
+                name = "unique_stable_name",
             ),
             models.UniqueConstraint(
                 fields = ["name_kanji"],
-                name = "unique_name_kanji",
+                name = "unique_stable_name_kanji",
             ),
         ]
 
     def __str__(self):
         return "%s" % self.name
+
+
 class WrestlerProfile(models.Model):
     wrestler = models.OneToOneField(
         Wrestler,
