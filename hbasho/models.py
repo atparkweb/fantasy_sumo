@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import TournamentLocations
 
 class Wrestler(models.Model):
     first_name = models.CharField(max_length=32)
@@ -64,3 +65,19 @@ class WrestlerProfile(models.Model):
     birthplace = models.CharField(max_length=32)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Tournament(models.Model):
+    location = models.IntegerField(choices=TournamentLocations.choices(), default=TournamentLocations.TOKYO)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    champion = models.ForeignKey(
+        Wrestler,
+        on_delete=models.RESTRICT,
+        null=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_tournament_location_label(self):
+        return TournamentLocations(self.location).name.title()
