@@ -68,7 +68,14 @@ class WrestlerProfile(models.Model):
 
 
 class Tournament(models.Model):
-    location = models.IntegerField(choices=TournamentLocations.choices(), default=TournamentLocations.TOKYO)
+    TOKYO, OSAKA, NAGOYA, FUKUOKA = "HBASHO_TOKYO", "HBASHO_OSAKA", "HBASHO_NAGOYA", "HBASHO_FUKUOKA"
+    TOURNAMENT_LOCATIONS = (
+        (TOKYO, "Tokyo"),
+        (OSAKA, "Osaka"),
+        (NAGOYA, "Nagoya"),
+        (FUKUOKA, "Fukuoka")
+    )
+    location = models.IntegerField(choices=TOURNAMENT_LOCATIONS, default=TOKYO)
     start_date = models.DateField()
     end_date = models.DateField()
     champion = models.ForeignKey(
@@ -76,8 +83,29 @@ class Tournament(models.Model):
         on_delete=models.RESTRICT,
         null=True
     )
+    wrestler = models.ManyToManyField(Wrestler, through='TournamentWrestler')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_tournament_location_label(self):
         return TournamentLocations(self.location).name.title()
+
+class Rank(models.Model):
+    MAKUUCHI, JURYO = "HBASHO_MAKUUCHI", "HBASHO_JURYO"
+    DIVISION_CHOICES = (
+        (MAKUUCHI, "Makuuchi"),
+        (JURYO, "Juryo"),
+    )
+    order_by = models.IntegerField()
+    title = models.CharField(max_length=128)
+    division = models.CharField(choices=DIVISION_CHOICES)
+
+class TournamentWrestler(models.Model):
+    wrestler = models.ForeignKey(Wrestler, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    rank = models.ForeignKey(Rank, on_delete=models.RESTRICT)
+    withdrew = models.BooleanField(default=False)
+    shukun_prize = models.BooleanField(default=False)
+    kanto_prize = models.BooleanField(default=False)
+    gino_prize = models.BooleanField(default=False)
+
