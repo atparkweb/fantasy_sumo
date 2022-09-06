@@ -18,12 +18,13 @@ Use the following steps to get the Django development server running with Postgr
 4. Start hacking
 
 ### Stopping the server
-1. In a terminal `cd` to the root of this project
-2. Run `./scripts/composedown`
+In a terminal from the the project root run: `./scripts/composedown`
+
+### Generating Migrations
+In a terminal from the project root run: `.scripts/makemigrations`
 
 ### Running Migrations
-1. In a terminal `cd` to the root of this project
-2. Run `./scripts/migrate`
+In a terminal from the project root run: `./scripts/migrate`
 
 ### Connecting to DB container psql
 1. Run `docker exec -it <DB container name> psql -U postgres`
