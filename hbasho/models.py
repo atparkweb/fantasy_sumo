@@ -1,5 +1,5 @@
 from django.db import models
-from .utils import TournamentLocations
+
 
 class Wrestler(models.Model):
     first_name = models.CharField(max_length=32)
@@ -86,8 +86,6 @@ class Tournament(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def get_tournament_location_label(self):
-        return TournamentLocations(self.location).name.title()
 
 class Rank(models.Model):
     MAKUUCHI, JURYO = "HBASHO_MAKUUCHI", "HBASHO_JURYO"
@@ -100,6 +98,7 @@ class Rank(models.Model):
     division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
 class TournamentWrestler(models.Model):
     wrestler = models.ForeignKey(Wrestler, on_delete=models.CASCADE)
