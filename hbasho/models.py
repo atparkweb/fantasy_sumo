@@ -1,6 +1,13 @@
 from django.db import models
 
 
+MAKUUCHI, JURYO = "HBASHO_MAKUUCHI", "HBASHO_JURYO"
+DIVISION_CHOICES = (
+    (MAKUUCHI, "Makuuchi"),
+    (JURYO, "Juryo"),
+)
+
+
 class Stable(models.Model):
     name = models.CharField(max_length=32)
     name_kanji = models.CharField(max_length=32)
@@ -69,21 +76,18 @@ class Tournament(models.Model):
     location = models.CharField(max_length=128, choices=TOURNAMENT_LOCATIONS, default=TOKYO)
     start_date = models.DateField()
     end_date = models.DateField()
+    wrestlers = models.ManyToManyField(Wrestler, through="TournamentWrestler")
     champion = models.ForeignKey(
         Wrestler,
         on_delete=models.RESTRICT,
-        null=True
+        null=True,
+        related_name="champion"
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class Rank(models.Model):
-    MAKUUCHI, JURYO = "HBASHO_MAKUUCHI", "HBASHO_JURYO"
-    DIVISION_CHOICES = (
-        (MAKUUCHI, "Makuuchi"),
-        (JURYO, "Juryo"),
-    )
     order_by = models.IntegerField()
     title = models.CharField(max_length=128)
     division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
@@ -118,3 +122,14 @@ class TournamentWrestler(models.Model):
             )
         ]
 
+
+class Match(models.Model):
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
+    order_by = models.IntegerField()
+    date = models.DateField()
+    wrestler_west = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, related_name="wrestler_west")
+    wrestler_east = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, related_name="wrestler_east")
+    winner = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, null=True, related_name="winner")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
