@@ -66,6 +66,14 @@ class WrestlerProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        constraints = [
+            models.constraints.UniqueConstraint(
+                fields = ["wrestler"],
+                name = "unique_wrestler_profile"
+            )
+        ]
+
 
 class Tournament(models.Model):
     TOKYO, OSAKA, NAGOYA, FUKUOKA = "HBASHO_TOKYO", "HBASHO_OSAKA", "HBASHO_NAGOYA", "HBASHO_FUKUOKA"
@@ -99,6 +107,14 @@ class Rank(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields = ["title"],
+                name = "unique_rank_title"
+            )
+        ]
+
 
 class TournamentWrestler(models.Model):
     wrestler = models.ForeignKey(Wrestler, on_delete=models.CASCADE)
@@ -110,4 +126,12 @@ class TournamentWrestler(models.Model):
     gino_prize = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields = ["wrestler", "tournament"],
+                name = "unique_tournament_wrestler"
+            )
+        ]
 
