@@ -1,2 +1,2 @@
 #!/bin/sh
-docker compose -f ./docker/dev/docker-compose.yml --project-directory . up
+docker compose --env-file .env -f ./docker/dev/docker-compose.yml --project-directory . up

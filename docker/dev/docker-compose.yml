@@ -19,9 +19,5 @@ services:
       - .:/usr/src/app
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=sumo_dev
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
