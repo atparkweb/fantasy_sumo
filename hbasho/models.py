@@ -88,6 +88,13 @@ class Tournament(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def title(self):
+        display = self.get_location_display()
+        month = self.start_date.strftime("%b")
+        year = self.start_date.year
+        return f"{display} {month} {year}"
+
 
 class Rank(models.Model):
     order_by = models.IntegerField()

@@ -24,9 +24,9 @@ class StableAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.display(description='Tournament Name')
+@admin.display(description='Tournament')
 def tournament_name(obj):
-    return (f'{obj.get_location_display()} {obj.start_date.strftime("%b")} {obj.start_date.year}')
+    return obj.title
 
 
 @admin.register(Tournament)
