@@ -41,11 +41,12 @@ class Wrestler(models.Model):
     stable = models.ForeignKey(
         Stable,
         on_delete=models.RESTRICT,
-        null=True
+        blank=True,
+        null=True,
     )
     retirement_date = models.DateField(default=None, blank=True, null=True)
-    birthdate = models.DateField(null=True)
-    birthplace = models.CharField(max_length=32, null=True)
+    birthdate = models.DateField(blank=True, null=True)
+    birthplace = models.CharField(max_length=32, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -57,7 +58,7 @@ class Wrestler(models.Model):
             ),
             models.UniqueConstraint(
                 fields = ["last_name_kanji", "first_name_kanji"],
-                name = "unique_wrestler_name_kanji"
+                name = "unique_wrestler_name_kanji",
             ),
         ]
 
@@ -71,7 +72,7 @@ class Tournament(models.Model):
         (TOKYO, "Tokyo"),
         (OSAKA, "Osaka"),
         (NAGOYA, "Nagoya"),
-        (FUKUOKA, "Fukuoka")
+        (FUKUOKA, "Fukuoka"),
     )
     location = models.CharField(max_length=128, choices=TOURNAMENT_LOCATIONS, default=TOKYO)
     start_date = models.DateField()
@@ -80,8 +81,9 @@ class Tournament(models.Model):
     champion = models.ForeignKey(
         Wrestler,
         on_delete=models.RESTRICT,
+        blank=True,
         null=True,
-        related_name="champion"
+        related_name="champion",
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -98,13 +100,16 @@ class Rank(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields = ["title"],
-                name = "unique_rank_title"
+                name = "unique_rank_title",
             )
         ]
 
 
 class TournamentWrestler(models.Model):
-    wrestler = models.ForeignKey(Wrestler, on_delete=models.CASCADE)
+    wrestler = models.ForeignKey(
+        Wrestler,
+        on_delete=models.CASCADE,
+    )
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     rank = models.ForeignKey(Rank, on_delete=models.RESTRICT)
     withdrew = models.BooleanField(default=False)
@@ -118,18 +123,35 @@ class TournamentWrestler(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields = ["wrestler", "tournament"],
-                name = "unique_tournament_wrestler"
+                name = "unique_tournament_wrestler",
             )
         ]
 
 
 class Match(models.Model):
-    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(
+        Tournament,
+        on_delete=models.CASCADE,
+    )
     division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
     order_by = models.IntegerField()
     date = models.DateField()
-    wrestler_west = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, related_name="wrestler_west")
-    wrestler_east = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, related_name="wrestler_east")
-    winner = models.ForeignKey(Wrestler, on_delete=models.RESTRICT, null=True, related_name="winner")
+    wrestler_west = models.ForeignKey(
+        Wrestler,
+        on_delete=models.RESTRICT,
+        related_name="wrestler_west",
+    )
+    wrestler_east = models.ForeignKey(
+        Wrestler,
+        on_delete=models.RESTRICT,
+        related_name="wrestler_east",
+    )
+    winner = models.ForeignKey(
+        Wrestler,
+        on_delete=models.RESTRICT,
+        blank=True,
+        null=True,
+        related_name="winner",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
