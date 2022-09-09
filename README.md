@@ -8,7 +8,12 @@ Fantasy Sumo tournaments.
 The development environment (Python/Django, Postgres) is configured to use [Docker](https://www.docker.com) containers.
 
 ### Requirements
+- [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Configuring Environment
+To run the containers, first create a `.env` file in the root directory.
+Use the `.env.example` file to see the required variables.
 
 ### Running the server
 Use the following steps to get the Django development server running with Postgres:
@@ -16,6 +21,10 @@ Use the following steps to get the Django development server running with Postgr
 2. Run `./scripts/composeup`
 3. Open browser and go to [localhost:8000](http://localhost:8000)
 4. Start hacking
+
+### Django Admin
+The backend admin can be accessed through the [Admin Interface](http://localhost:8000/admin)
+Refer to the Official Django documentation on setting up admin access.
 
 ### Stopping the server
 In a terminal from the the project root run: `./scripts/composedown`
@@ -27,5 +36,6 @@ In a terminal from the project root run: `.scripts/makemigrations`
 In a terminal from the project root run: `./scripts/migrate`
 
 ### Connecting to DB container psql
+If you want to connect to the database through PSQL:
 1. Run `docker exec -it <DB container name> psql -U postgres`
 
