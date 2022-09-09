@@ -30,7 +30,7 @@ Refer to the Official Django documentation on setting up admin access.
 In a terminal from the the project root run: `./scripts/composedown`
 
 ### Generating Migrations
-In a terminal from the project root run: `.scripts/makemigrations`
+In a terminal from the project root run: `./scripts/makemigrations`
 
 ### Running Migrations
 In a terminal from the project root run: `./scripts/migrate`
