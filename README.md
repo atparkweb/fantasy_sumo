@@ -30,7 +30,8 @@ Use the following steps to get the Django development server running with Postgr
 
 ### Django Admin
 The backend admin can be accessed through the [Admin Interface](http://localhost:8000/admin)
-Refer to the Official Django documentation on setting up admin access.
+You will need to create a `superuser` to login to the admin.
+Run `./scripts/createsuperuser`
 
 ### Stopping the server
 In a terminal from the the project root run: `./scripts/composedown`
