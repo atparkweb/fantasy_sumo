@@ -143,7 +143,6 @@ class Match(models.Model):
         Tournament,
         on_delete=models.CASCADE,
     )
-    division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
     order_by = models.IntegerField()
     date = models.DateField()
     wrestler_west = models.ForeignKey(
