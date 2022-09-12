@@ -9,23 +9,11 @@ DIVISION_CHOICES = (
 
 
 class Stable(models.Model):
-    name = models.CharField(max_length=32)
-    name_kanji = models.CharField(max_length=32)
+    name = models.CharField(max_length=32, unique=True)
+    name_kanji = models.CharField(max_length=32, unique=True)
     location = models.CharField(max_length=32)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields = ["name"],
-                name = "unique_stable_name",
-            ),
-            models.UniqueConstraint(
-                fields = ["name_kanji"],
-                name = "unique_stable_name_kanji",
-            ),
-        ]
 
     def __str__(self):
         return "%s" % self.name
@@ -53,12 +41,12 @@ class Wrestler(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields = ["last_name", "first_name"],
-                name = "unique_wrestler_name",
+                fields=["last_name", "first_name"],
+                name="unique_wrestler_name",
             ),
             models.UniqueConstraint(
-                fields = ["last_name_kanji", "first_name_kanji"],
-                name = "unique_wrestler_name_kanji",
+                fields=["last_name_kanji", "first_name_kanji"],
+                name="unique_wrestler_name_kanji",
             ),
         ]
 
@@ -98,18 +86,10 @@ class Tournament(models.Model):
 
 class Rank(models.Model):
     order_by = models.IntegerField()
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, unique=True)
     division = models.CharField(max_length=128, choices=DIVISION_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields = ["title"],
-                name = "unique_rank_title",
-            )
-        ]
 
     def __str__(self):
         return "%s (%s)" % (self.title, self.division)
@@ -132,8 +112,8 @@ class TournamentWrestler(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields = ["wrestler", "tournament"],
-                name = "unique_tournament_wrestler",
+                fields=["wrestler", "tournament"],
+                name="unique_tournament_wrestler",
             )
         ]
 
@@ -161,6 +141,28 @@ class Match(models.Model):
         blank=True,
         null=True,
         related_name="winner",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class WrestlerRecord(models.Model):
+    wrestler = models.OneToOneField(
+        Wrestler,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    wins = models.IntegerField(default=0)
+    lossess = models.IntegerField(default=0)
+    draws = models.IntegerField(default=0)
+    championships_makuuchi = models.IntegerField(default=0)
+    kinboshi = models.IntegerField(default=0)
+    shukun_prizes = models.IntegerField(default=0)
+    kanto_prizes = models.IntegerField(default=0)
+    gino_prizes = models.IntegerField(default=0)
+    highest_rank = models.ForeignKey(
+        Rank,
+        on_delete=models.RESTRICT
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
