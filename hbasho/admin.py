@@ -5,7 +5,8 @@ from .models import (
     Stable,
     Tournament,
     TournamentWrestler,
-    Wrestler
+    Wrestler,
+    WrestlerRecord,
 )
 
 
@@ -42,3 +43,8 @@ class TournamentWrestlerAdmin(admin.ModelAdmin):
 @admin.register(Wrestler)
 class WrestlerAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'last_name_kanji')
+
+
+@admin.register(WrestlerRecord)
+class WrestlerRecordAdmin(admin.ModelAdmin):
+    pass
