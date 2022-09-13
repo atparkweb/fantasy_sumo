@@ -25,14 +25,9 @@ class StableAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.display(description='Tournament')
-def tournament_name(obj):
-    return obj.title
-
-
 @admin.register(Tournament)
 class TournamentAdmin(admin.ModelAdmin):
-    list_display = (tournament_name,)
+    pass
 
 
 @admin.register(TournamentWrestler)
