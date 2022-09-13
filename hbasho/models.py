@@ -115,6 +115,9 @@ class TournamentWrestler(models.Model):
             )
         ]
 
+    def __str__(self):
+        return self.wrestler
+
 
 class Match(models.Model):
     tournament = models.ForeignKey(
@@ -169,3 +172,6 @@ class WrestlerRecord(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.wrestler

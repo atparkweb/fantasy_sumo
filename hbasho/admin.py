@@ -12,12 +12,20 @@ from .models import (
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('match', 'tournament', 'date')
+
+    @admin.display(description='Match')
+    def match(self, obj):
+        return obj
 
 
 @admin.register(Rank)
 class Rank(admin.ModelAdmin):
-    pass
+    list_display = ('rank', 'division')
+
+    @admin.display(description='Rank')
+    def rank(self, obj):
+        return obj
 
 
 @admin.register(Stable)
@@ -27,12 +35,16 @@ class StableAdmin(admin.ModelAdmin):
 
 @admin.register(Tournament)
 class TournamentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'location')
+
+    @admin.display(description='Title')
+    def title(self, obj):
+        return obj
 
 
 @admin.register(TournamentWrestler)
 class TournamentWrestlerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('wrestler', 'tournament')
 
 
 @admin.register(Wrestler)
