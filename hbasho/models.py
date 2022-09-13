@@ -51,7 +51,7 @@ class Wrestler(models.Model):
         ]
 
     def __str__(self):
-        return "%s %s" % (self.last_name, self.first_name)
+        return self.last_name
 
 
 class Tournament(models.Model):
@@ -76,12 +76,10 @@ class Tournament(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    @property
-    def title(self):
-        display = self.get_location_display()
+    def __str__(self):
         month = self.start_date.strftime("%b")
         year = self.start_date.year
-        return f"{display} {month} {year}"
+        return f"{month} {year}"
 
 
 class Rank(models.Model):
@@ -92,7 +90,7 @@ class Rank(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "%s (%s)" % (self.title, self.division)
+        return self.title
 
 
 class TournamentWrestler(models.Model):
@@ -123,7 +121,6 @@ class Match(models.Model):
         Tournament,
         on_delete=models.CASCADE,
     )
-    order_by = models.IntegerField()
     date = models.DateField()
     wrestler_west = models.ForeignKey(
         Wrestler,
@@ -144,6 +141,12 @@ class Match(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_day_number(self):
+        return (self.date - self.tournament.start_date).days + 1
+
+    def __str__(self):
+        return f"Day {self.get_day_number()}: {self.wrestler_east} vs. {self.wrestler_west}"
 
 
 class WrestlerRecord(models.Model):
