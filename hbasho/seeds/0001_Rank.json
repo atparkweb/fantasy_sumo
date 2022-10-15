@@ -1,0 +1,222 @@
+[
+{
+    "model": "hbasho.rank",
+    "pk": 1,
+    "fields": {
+        "order_by": 1,
+        "title": "Yokozuna",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T01:58:06.623Z",
+        "updated_at": "2022-10-15T01:58:06.623Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 2,
+    "fields": {
+        "order_by": 2,
+        "title": "Ozeki",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T01:58:29.267Z",
+        "updated_at": "2022-10-15T01:58:29.268Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 3,
+    "fields": {
+        "order_by": 3,
+        "title": "Sekiwake",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T01:58:50.122Z",
+        "updated_at": "2022-10-15T01:58:50.122Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 4,
+    "fields": {
+        "order_by": 4,
+        "title": "Komusubi",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T01:59:06.016Z",
+        "updated_at": "2022-10-15T01:59:06.016Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 5,
+    "fields": {
+        "order_by": 5,
+        "title": "Maegashira 1",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:25:25.162Z",
+        "updated_at": "2022-10-15T02:25:25.162Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 6,
+    "fields": {
+        "order_by": 6,
+        "title": "Maegashira 2",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:25:29.531Z",
+        "updated_at": "2022-10-15T02:25:29.531Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 7,
+    "fields": {
+        "order_by": 7,
+        "title": "Maegashira 3",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:25:46.532Z",
+        "updated_at": "2022-10-15T02:25:46.532Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 8,
+    "fields": {
+        "order_by": 8,
+        "title": "Maegashira 4",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:26:02.689Z",
+        "updated_at": "2022-10-15T02:26:02.689Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 9,
+    "fields": {
+        "order_by": 9,
+        "title": "Maegashira 5",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:26:15.813Z",
+        "updated_at": "2022-10-15T02:26:15.813Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 10,
+    "fields": {
+        "order_by": 10,
+        "title": "Maegashira 6",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:26:28.014Z",
+        "updated_at": "2022-10-15T02:26:28.014Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 11,
+    "fields": {
+        "order_by": 11,
+        "title": "Maegashira 7",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:26:38.864Z",
+        "updated_at": "2022-10-15T02:26:38.864Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 12,
+    "fields": {
+        "order_by": 12,
+        "title": "Maegashira 8",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:30:09.249Z",
+        "updated_at": "2022-10-15T02:30:09.249Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 13,
+    "fields": {
+        "order_by": 13,
+        "title": "Maegashira 9",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:30:09.257Z",
+        "updated_at": "2022-10-15T02:30:09.257Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 14,
+    "fields": {
+        "order_by": 14,
+        "title": "Maegashira 10",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:30:09.265Z",
+        "updated_at": "2022-10-15T02:30:09.265Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 15,
+    "fields": {
+        "order_by": 15,
+        "title": "Maegashira 11",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:30:09.275Z",
+        "updated_at": "2022-10-15T02:30:09.275Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 16,
+    "fields": {
+        "order_by": 16,
+        "title": "Maegashira 12",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:30:09.282Z",
+        "updated_at": "2022-10-15T02:30:09.282Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 17,
+    "fields": {
+        "order_by": 17,
+        "title": "Maegashira 13",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:33:06.703Z",
+        "updated_at": "2022-10-15T02:33:06.703Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 18,
+    "fields": {
+        "order_by": 18,
+        "title": "Maegashira 14",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:33:06.711Z",
+        "updated_at": "2022-10-15T02:33:06.711Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 19,
+    "fields": {
+        "order_by": 19,
+        "title": "Maegashira 15",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:33:06.718Z",
+        "updated_at": "2022-10-15T02:33:06.718Z"
+    }
+},
+{
+    "model": "hbasho.rank",
+    "pk": 20,
+    "fields": {
+        "order_by": 20,
+        "title": "Maegashira 16",
+        "division": "Makuuchi",
+        "created_at": "2022-10-15T02:33:06.724Z",
+        "updated_at": "2022-10-15T02:33:06.724Z"
+    }
+}
+]
