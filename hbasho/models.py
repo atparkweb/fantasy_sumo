@@ -1,10 +1,9 @@
 from django.db import models
 
 
-MAKUUCHI, JURYO = "HBASHO_MAKUUCHI", "HBASHO_JURYO"
 DIVISION_CHOICES = (
-    (MAKUUCHI, "Makuuchi"),
-    (JURYO, "Juryo"),
+    (MAKUUCHI := "HBASHO_MAKUUCHI", "Makuuchi"),
+    (JURYO := "HBASHO_JURYO", "Juryo"),
 )
 
 
@@ -38,6 +37,9 @@ class Wrestler(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.last_name
+
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -50,17 +52,13 @@ class Wrestler(models.Model):
             ),
         ]
 
-    def __str__(self):
-        return self.last_name
-
 
 class Tournament(models.Model):
-    TOKYO, OSAKA, NAGOYA, FUKUOKA = "HBASHO_TOKYO", "HBASHO_OSAKA", "HBASHO_NAGOYA", "HBASHO_FUKUOKA"
     TOURNAMENT_LOCATIONS = (
-        (TOKYO, "Tokyo"),
-        (OSAKA, "Osaka"),
-        (NAGOYA, "Nagoya"),
-        (FUKUOKA, "Fukuoka"),
+        (TOKYO := "HBASHO_TOKYO", "Tokyo"),
+        (OSAKA := "HBASHO_OSAKA", "Osaka"),
+        (NAGOYA := "HBASHO_NAGOYA", "Nagoya"),
+        (FUKUOKA := "HBASHO_FUKUOKA", "Fukuoka"),
     )
     location = models.CharField(max_length=128, choices=TOURNAMENT_LOCATIONS, default=TOKYO)
     start_date = models.DateField()
@@ -92,6 +90,9 @@ class Rank(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['order_by']
+
 
 class TournamentWrestler(models.Model):
     wrestler = models.ForeignKey(
@@ -107,6 +108,9 @@ class TournamentWrestler(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.wrestler
+
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -114,9 +118,6 @@ class TournamentWrestler(models.Model):
                 name="unique_tournament_wrestler",
             )
         ]
-
-    def __str__(self):
-        return self.wrestler
 
 
 class Match(models.Model):
